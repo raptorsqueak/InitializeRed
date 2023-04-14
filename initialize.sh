@@ -78,3 +78,4 @@ echo "PTF is built and ready to use."
 # Terminal History
 #------------------------------------------------------------------------------
 cat terminal-history.sh >> ~/.bashrc
+cat termianl-history.sh >> ~/.zshrc
