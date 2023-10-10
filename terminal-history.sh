@@ -7,7 +7,7 @@ HISTFILESIZE=2000
 # set up default history folder
 mkdir -p "$HOME/.history"
 
-alias caphist='cat ~/.history/*history*'
+alias rechist='find $HOME -type f -name "*history*.log" -exec cat {} \;'
 alias history='history 0'
 
 # get the running process to determine what steps to take
@@ -33,7 +33,8 @@ if [ "$running" != "script" ]; then
         if [ ! -d "$location" ]; then
             location="$HOME/.history"
         fi
-        export CAPTURE_DIR="$location"
+        fullpath=$(realpath $location)
+        export CAPTURE_DIR="$fullpath"
         script --timing="${CAPTURE_DIR%%/}/$CAPTURE_DT-time.log" -f "${CAPTURE_DIR%%/}/$CAPTURE_DT-shell.log"
     fi
 else
