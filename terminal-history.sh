@@ -8,7 +8,6 @@ HISTFILESIZE=2000
 mkdir -p "$HOME/.history"
 
 alias rechist='find $HOME -type f -name "*history*.log" -exec cat {} \;'
-alias history='history 0'
 
 # get the running process to determine what steps to take
 running="$(ps -ocommand= -p $PPID | awk '{print $1}')"
@@ -51,9 +50,10 @@ else
                 precmd() { fc -W; }
                 setopt appendhistory
                 setopt extended_history
+		alias history='history 0'
             fi
             if [ ${BASH_VERSION} ]; then
-                export PROMPT_COMMAND="history -a;history-c;history -r"
+                export PROMPT_COMMAND="history -a;history -c;history -r"
             fi
         fi
 fi
